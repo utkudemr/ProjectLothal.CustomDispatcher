@@ -1,4 +1,5 @@
 ﻿
+using ProjectLothal.CustomDispatcher.Api.Decorators;
 using ProjectLothal.CustomDispatcher.Api.Dispatchers;
 using ProjectLothal.CustomDispatcher.Api.Response;
 using ProjectLothal.CustomDispatcher.Api.Services;
@@ -13,6 +14,7 @@ namespace ProjectLothal.CustomDispatcher.Api.Commands
         public string? Name { get; set; }
         public string? Color { get; set; }
 
+        [AuditLog]
         public sealed class AddProductBasketHandler : ICommandHandler<AddProductBasketCommand>
         {
             private readonly ILogger<AddProductBasketHandler> _logger;

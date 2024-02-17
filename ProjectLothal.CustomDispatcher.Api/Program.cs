@@ -1,4 +1,5 @@
 using ProjectLothal.CustomDispatcher.Api;
+using ProjectLothal.CustomDispatcher.Api.Decorators;
 using ProjectLothal.CustomDispatcher.Api.Dispatchers;
 using ProjectLothal.CustomDispatcher.Api.Services;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddTransient<ITestBusinessService, TestBusinessService>();
+builder.Services.AddTransient<ILoggerService, LogBusinessService>();
 builder.Services.AddSingleton<Mediator>();
 builder.Services.AddHandlers();
 
