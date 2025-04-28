@@ -9,13 +9,15 @@ namespace ProjectLothal.CustomDispatcher.Api
     {
         public static void AddHandlers(this IServiceCollection services)
         {
-            List<Type> handlerTypes = typeof(ICommand).Assembly.GetTypes()
-                .Where(x => x.GetInterfaces().Any(y => IsHandlerInterface(y)))
-                .Where(x => x.Name.EndsWith("Handler"))
-                .ToList();
-
+            var handlerTypes = GetHandlerTypes();
             handlerTypes.ForEach(type => RegisterHandler(services, type));
-            
+        }
+
+        private static List<Type> GetHandlerTypes()
+        {
+            return typeof(ICommand).Assembly.GetTypes()
+                .Where(x => x.GetInterfaces().Any(IsHandlerInterface))
+                .ToList();
         }
 
         private static void RegisterHandler(IServiceCollection services, Type handlerType)
@@ -24,8 +26,8 @@ namespace ProjectLothal.CustomDispatcher.Api
             
             var handlerDecoratorTypes = HandlerDecoratorTypes(handlerType);
 
-            List<Type> handlerTypeWithDecorators = handlerDecoratorTypes
-             .Concat(new[] { handlerType })
+            var handlerTypeWithDecorators = handlerDecoratorTypes
+             .Concat([handlerType])
              .Reverse() //Handler Type first
              .ToList();
 
@@ -44,15 +46,15 @@ namespace ProjectLothal.CustomDispatcher.Api
 
         private static Func<IServiceProvider, object> BuildFactory(List<Type> handlerTypes, Type interfaceType)
         {
-            handlerTypes = handlerTypes.Select(handlerType=>MakeGenericHandler(handlerType, interfaceType)).ToList();
+            handlerTypes = handlerTypes.Select(handlerType => MakeGenericHandler(handlerType, interfaceType)).ToList();
 
            
-            var contructorMethods = handlerTypes.Select(a=>a.GetConstructors().Single()).ToList();
+            var constructorMethods = handlerTypes.Select(a=>a.GetConstructors().Single()).ToList();
 
             Func<IServiceProvider, object> constructorFunc = provider =>
             {
                 object? currentType = null; //First set handler Constructor and then connect attribute with handler this parameter.
-                foreach (var constructorMethod in contructorMethods)
+                foreach (var constructorMethod in constructorMethods)
                 {
                     var parameters = constructorMethod.GetParameters().ToList();
                     var dependecies = GetHandlerDepedencies(parameters, currentType, provider);
@@ -101,7 +103,7 @@ namespace ProjectLothal.CustomDispatcher.Api
             if (!type.IsGenericType)
                 return false;
 
-            Type typeDefinition = type.GetGenericTypeDefinition();
+            var typeDefinition = type.GetGenericTypeDefinition();
 
             return typeDefinition == typeof(ICommandHandler<>);
         }
