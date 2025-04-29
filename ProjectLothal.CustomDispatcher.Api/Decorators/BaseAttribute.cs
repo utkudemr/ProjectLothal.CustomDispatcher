@@ -1,7 +1,8 @@
 ﻿namespace ProjectLothal.CustomDispatcher.Api.Decorators
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
-    public class BaseAttribute : Attribute
+    public abstract class BaseAttribute : Attribute
     {
+        public abstract Type GetDecoratorType();
     }
 }

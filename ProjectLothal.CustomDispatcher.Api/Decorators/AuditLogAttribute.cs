@@ -6,6 +6,8 @@
         public AuditLogAttribute()
         {
         }
+
+        public override Type GetDecoratorType() => typeof(AuditLogDecorator<>);
     }
 
 
