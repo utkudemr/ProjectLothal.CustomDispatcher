@@ -1,21 +1,26 @@
-﻿using ProjectLothal.CustomDispatcher.Api.Commands;
+﻿using System.Windows.Input;
+using ProjectLothal.CustomDispatcher.Api.Commands;
+using ProjectLothal.CustomDispatcher.Api.Pipelines;
 using ProjectLothal.CustomDispatcher.Api.Response;
 
 namespace ProjectLothal.CustomDispatcher.Api.Dispatchers
 {
-    public class Mediator(IServiceProvider provider)
+    public class Mediator
     {
-        public Result Dispatch(ICommand command)
+        private readonly IServiceProvider _provider;
+
+        public Mediator(IServiceProvider provider)
         {
-            Type type = typeof(ICommandHandler<>);
-            Type[] typeArgs = [command.GetType()];
-            Type handlerType = type.MakeGenericType(typeArgs);
-            using var scope = provider.CreateScope();
-            dynamic handler = scope.ServiceProvider.GetRequiredService(handlerType);
-            Result result = handler.Handle((dynamic)command);
+            _provider = provider;
+        }
+        
+        public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
+        {
+            using var scope = _provider.CreateScope();
+    
+            var executor = scope.ServiceProvider.GetRequiredService<PipelineProcessor>();
 
-            return result;
-
+            return await executor.Execute(request, cancellationToken);
         }
     }
 }

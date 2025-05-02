@@ -1,6 +1,7 @@
 using ProjectLothal.CustomDispatcher.Api;
 using ProjectLothal.CustomDispatcher.Api.Decorators;
 using ProjectLothal.CustomDispatcher.Api.Dispatchers;
+using ProjectLothal.CustomDispatcher.Api.Pipelines;
 using ProjectLothal.CustomDispatcher.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddTransient<ITestBusinessService, TestBusinessService>();
-builder.Services.AddTransient<ILoggerService, LogBusinessService>();
 builder.Services.AddSingleton<Mediator>();
 builder.Services.AddHandlers();
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditLogBehavior<,>));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

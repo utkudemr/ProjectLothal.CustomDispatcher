@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectLothal.CustomDispatcher.Api.Commands;
 using ProjectLothal.CustomDispatcher.Api.Dispatchers;
 using ProjectLothal.CustomDispatcher.Api.DTOs.Basket;
+using ProjectLothal.CustomDispatcher.Api.Response;
 
 namespace ProjectLothal.CustomDispatcher.Api.Controllers
 {
@@ -16,7 +17,7 @@ namespace ProjectLothal.CustomDispatcher.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProductBasket([FromBody] AddProductBasketDto dto)
+        public async Task<IActionResult> AddProductBasket([FromBody] AddProductBasketDto dto)
         {
             var command = new AddProductBasketCommand()
             {
@@ -26,8 +27,8 @@ namespace ProjectLothal.CustomDispatcher.Api.Controllers
                 Color=dto.Color,
                 Name=dto.Name,
             };
+            var result = await _mediator.Send(command);
 
-            var result = _mediator.Dispatch(command);
             return Ok();
         }
     }
