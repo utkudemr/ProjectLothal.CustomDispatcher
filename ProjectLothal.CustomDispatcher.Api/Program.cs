@@ -1,26 +1,23 @@
-using ProjectLothal.CustomDispatcher.Api;
+using System.Reflection;
+using Lothal.Mediator.Core;
+using Lothal.Mediator.Core.Dispatchers;
+using Lothal.Mediator.Core.Pipelines;
 using ProjectLothal.CustomDispatcher.Api.Decorators;
-using ProjectLothal.CustomDispatcher.Api.Dispatchers;
-using ProjectLothal.CustomDispatcher.Api.Pipelines;
 using ProjectLothal.CustomDispatcher.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddTransient<ITestBusinessService, TestBusinessService>();
 builder.Services.AddSingleton<Mediator>();
-builder.Services.AddHandlers();
+builder.Services.AddHandlers(Assembly.GetExecutingAssembly());
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditLogBehavior<,>));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

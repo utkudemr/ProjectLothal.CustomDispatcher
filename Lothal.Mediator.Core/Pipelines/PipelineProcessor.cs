@@ -1,6 +1,7 @@
-using ProjectLothal.CustomDispatcher.Api.Dispatchers;
+using Lothal.Mediator.Core.Dispatchers;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace ProjectLothal.CustomDispatcher.Api.Pipelines;
+namespace Lothal.Mediator.Core.Pipelines;
 
 public class PipelineProcessor(IServiceProvider serviceProvider)
 {

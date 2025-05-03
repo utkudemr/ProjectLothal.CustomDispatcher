@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLothal.CustomDispatcher.Api", "ProjectLothal.CustomDispatcher.Api.csproj", "{7218DD87-49AA-4830-9563-014F629DD7A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lothal.Mediator.Core", "..\Lothal.Mediator.Core\Lothal.Mediator.Core.csproj", "{34AA7A7E-8BC6-4392-8B72-625DE06F464D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7218DD87-49AA-4830-9563-014F629DD7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7218DD87-49AA-4830-9563-014F629DD7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7218DD87-49AA-4830-9563-014F629DD7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34AA7A7E-8BC6-4392-8B72-625DE06F464D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34AA7A7E-8BC6-4392-8B72-625DE06F464D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34AA7A7E-8BC6-4392-8B72-625DE06F464D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34AA7A7E-8BC6-4392-8B72-625DE06F464D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

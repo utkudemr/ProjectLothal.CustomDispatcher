@@ -1,4 +1,4 @@
-namespace ProjectLothal.CustomDispatcher.Api.Dispatchers;
+namespace Lothal.Mediator.Core.Dispatchers;
 
 public interface IRequest<TResponse>
 {

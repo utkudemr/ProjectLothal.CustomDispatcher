@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using ProjectLothal.CustomDispatcher.Api.Dispatchers;
-using ProjectLothal.CustomDispatcher.Api.Pipelines;
+﻿using Lothal.Mediator.Core.Dispatchers;
+using Lothal.Mediator.Core.Pipelines;
+using Newtonsoft.Json;
 
 namespace ProjectLothal.CustomDispatcher.Api.Decorators;
 

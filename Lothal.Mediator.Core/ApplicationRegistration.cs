@@ -1,19 +1,18 @@
-﻿using ProjectLothal.CustomDispatcher.Api.Dispatchers;
-using System.Reflection;
-using ProjectLothal.CustomDispatcher.Api.Pipelines;
+﻿using System.Reflection;
+using Lothal.Mediator.Core.Dispatchers;
+using Lothal.Mediator.Core.Pipelines;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace ProjectLothal.CustomDispatcher.Api;
+namespace Lothal.Mediator.Core;
 
 public static class HandlerRegistration
 {
-    public static void AddHandlers(this IServiceCollection services)
+    public static void AddHandlers(this IServiceCollection services, Assembly assembly)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-
         var handlerTypes = assembly.GetTypes()
             .Where(t => t.GetInterfaces().Any(i =>
                 i.IsGenericType &&
-                (i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>))
+                i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>)
             ))
             .ToList();
 

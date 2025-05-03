@@ -1,4 +1,4 @@
-namespace ProjectLothal.CustomDispatcher.Api.Pipelines;
+namespace Lothal.Mediator.Core.Pipelines;
 
 public interface IPipelineBehavior<in TRequest, TResponse>
 {

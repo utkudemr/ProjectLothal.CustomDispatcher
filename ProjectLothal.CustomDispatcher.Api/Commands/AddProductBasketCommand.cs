@@ -1,4 +1,4 @@
-﻿using ProjectLothal.CustomDispatcher.Api.Dispatchers;
+﻿using Lothal.Mediator.Core.Dispatchers;
 using ProjectLothal.CustomDispatcher.Api.Response;
 using ProjectLothal.CustomDispatcher.Api.Services;
 

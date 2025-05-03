@@ -1,0 +1,77 @@
+# Build results
+bin/
+obj/
+out/
+
+# Rider (JetBrains)
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Dotnet CLI
+*.deps.json
+*.runtimeconfig.json
+
+# Logs
+*.log
+logs/
+
+# Test results
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+*.orig
+*.rej
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# dotCover
+*.dotCover
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Environment config
+.env
+*.env.local
+secrets.json
+
+# Git merge/diff tools
+*.orig
+
+# Paket (alternative to NuGet)
+.paket/
+paket-files/
+
+# Rider cache
+.idea/
+
+# Ignore local dev files
+*.local.json
+appsettings.*.local.json
