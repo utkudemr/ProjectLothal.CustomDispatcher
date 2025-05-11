@@ -9,6 +9,10 @@
         <PackageId>Lothal.Mediator</PackageId>
         <Authors>utkudemr</Authors>
         <Company>ProjectLothal</Company>
+        <Description>A lightweight custom mediator implementation for .NET</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/utkudemr/ProjectLothal.CustomDispatcher</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/utkudemr/ProjectLothal.CustomDispatcher</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>
